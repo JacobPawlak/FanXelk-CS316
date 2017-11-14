@@ -1,0 +1,199 @@
+CS 316 Program 4 PHP Fall 2017
+=====================================================================
+
+Xelkalai is sad and confused.  His Xelkster money-making idea has failed.
+For some reason unknown to him, users refused to embrace free music
+downloads just because of a few advertisements!
+
+No problem, Xelkalai can bounce back from this minor setback.  He has
+decided to combine two of his passions: gambling and sports.  Although
+he is not entirely familiar with terran-based sports, he has done some
+research.
+
+As a preliminary step, he has contracted you to write an online sports
+portal so his customers can access past sports scores/metrics - FanXelk.
+
+Xelkster requirements:
+=====================================================================
+0) The program must be written in PHP.
+1) Your program shall execute and run properly on the www.cs.uky.edu system.
+2) Your program process (read) a given JSON file (Sports.json).  
+   It will contain a JSON element "sport", which will be an array of
+   JSON objects.  Each object will have a "title", "results" and
+   "searchterms" subobject.
+
+   "title" will be the title of the sport for this object:
+        "College Football", or "Mens College Basketball", etc.
+   "results" will be a list of key/value pairs where the key
+        is the season of the results.  The value will be the
+        name of a provided JSON file that contains game/match
+        results for each in the season.
+    "searchterms" will be a list of terms that can be searched
+        for in the above files.
+
+3) Your program shall contain a function, showResults(), which
+   takes as parameters the name of a JSON file and an optional
+   searchterm.  Your program shall do the following:
+
+   a) check for existence of the file, act accordingly.
+   b) open the file and use json_decode() to produce either
+      objects or arrays (your choice).
+   c) verify that the file is proper JSON with json_last_error().
+   d) Produce a report (in HTML format) with the appropriate
+      title/header which is filled in from the "comments"
+      JSON element.
+   d) iterate over the "games" JSON element, printing out
+      the results of each game in a nice readable format.  While
+      iterating, keep track of total wins and losses.
+   e) if the user selected a search parameter (from searchterms
+      above), then in each game that key appears ("Opponent", or
+      "Points", etc) - your report shall make the key and value
+      BOLD in the output.  If the key does not appears then
+      no key/value is made bold.
+   f) After the game results are output, output a summary of
+      Win/Loss and the win percentage (format your choice).
+
+4) Your shall produce an HTML form.  This form shall present the 
+   user with a web page and form.  The form shall contain pull down 
+   choices for the title, the results (containing the key), and 
+   all searchterms across all sports.  Note that this means that
+   with the supplied example Sports.json file, "Digs" will not
+   exist in the other two sports.  Your program will accept
+   non-existent searchterms for sports and simply treat them
+   as elements not found in those games.
+
+   Your action shall call your PHP program with the appropriate
+   submissions.  The submissions will determine, based on "title"
+   and "results" selected, which filename to send to your
+   function showResults() above.  Note you shall not expose the
+   filenames to the user, as a security measure.
+
+5) You shall document (via comments at the top of your code),
+   which items you did and did not implement.  This is also
+   critical for any extra credit you might have attempted.
+   Look at the grading rubric below, list out each letter/item
+   and put "implemented" or "not-implemented" or "partially
+   implemented".  If partially, explain what does/does not work.
+
+   Repeat this for any extra credit.
+        
+
+
+STEPS:
+=====================================================================
+
+Suggestions only:
+    1) Write #2 and #3 first, in the terminal and not as a web page.
+       This will greatly help in debugging your first experience
+       with PHP.  Write this without any HTML formatting.
+
+    2) Once showResults() is working properly, you can add #4.
+
+    3) Once #4 is working properly, add in HTML formatting to #3.
+
+=====================================================================
+
+PHP functions/methods/objects you may need:
+
+    isset() - will tell you if a variable is set.
+
+    file_get_contents() - will read in a file and return the contents
+                          as a string.
+
+    strlen() - return length of a string.
+
+    json_decode() - will take a string and return a JSON object.
+
+    json_last_error() - should be called after json_decode() to make sure
+                        the JSON object was valid.  For non-zero values 
+                        there was a error!
+    
+    var_dump() - will output a representation of a variable - use this
+                 for debugging your program.
+
+    foreach() - will iterate over an object or array allowing your
+                program to access individual elements.  Note that
+                nested objects/arrays may need to be processed with
+                another foreach().  Note there are multiple syntax
+                depending on the object.
+
+    file_exists() - checks if a filename exists.
+
+    $_GET[] is a global array PHP presents to the programmer.  It
+        will contain a list of key/value pairs with the key being the
+        name of each GET parameter in an HTML form.  The value will
+        (in theory) be the value the user puts in the form.  Use
+        isset() to see if a particular key exists.
+
+
+
+Xelkalai's Contract Requirements:
+====================================
+0) You shall submit your PHP file to Canvas named as 
+   "Lastname_p4.php", or "Lastname1Lastname2_p4.php" if you
+   work in a team.  If you implement more than 1 file
+   or extra credit files, then use a ZIP file.
+1) You shall properly comment your code including putting your
+   name(s) at the top.
+2) You shall follow Dr. Finkel's checklist for good programming:
+   http://www.cs.uky.edu/~raphael/checklist.html
+
+Teams:
+
+You have the option of working in teams of 2.  Each team member must
+contribute equally to the project.
+
+Grading Rubric
+==============
+a) Your PHP program runs without runtime errors or warnings
+   and performs basic reporting on JSON objects properly.           50 pts
+b) Your PHP program also performs searches, highlighting.          
+   the included search term.                                        15 pts
+c) Your PHP correctly and properly reads files from the 
+   directory and converts them to JSON objects.                     10 pts
+d) Your PHP program presents an HTML form that is properly
+   presented with dynamically (ie, not static/hardcoded) 
+   populated fields and options from Sports.json file.              10 pts
+e) Your PHP program is secure and returns appropriate error
+   messages to the user for improper/incorrect search
+   criteria.                                                        10 pts
+f) Your PHP program is robust against missing or incorrect
+   JSON fields/elements.                                             5 pts
+
+   ------------------------------------------------------------------------
+                                                                   100 pts
+
+Normal deductions apply to overall score: names in files, duplicate code,
+Dr. Finkel's programming tips, etc.
+
+Extra credit available to be applied to points lost on P2:
+==========================================================
+
+g) Code the HTML form and rest of your PHP all in one source
+   file and not 2 separate files.   Note that you must implement
+   "d" above.                                                        5 pts
+h) Add an element to Sports.json for "College Football" and
+   create the appropriate corresponding JSON file for the game
+   results (and comments).  Turn in both your updated
+   Sports.json file and the game results file.                       5 pts
+
+i) Add a 4th field to the HTML form.  Add this field/search
+   choice to the report's header (say, below the "comments".
+   This field shall have three values ("all", "max", "min").  
+   If the user selects "all" your search program acts as above, 
+   simply highlighting all of that search key/value for each 
+   result.  If the user selects "max" then, in addition to 
+   highlighting all key/values for the selected search term, 
+   your HTML will change the color to blue for the key/value 
+   that matches the key and the value is the maximum for the 
+   whole season.  If they select "min", the change the color 
+   to red for the lowest value.  Note that there are instances 
+   where min or max do not make a lot of sense (Opponent, 
+   for example).  Programmer's choice on what to do:  treat 
+   strings as alphabetically ("L" is less than "W", so all 
+   "L"s would be considered mins and all "W" would be maxs.  
+   Document explicitly your choices made.                            15 pts
+   [Note: it is critical to check for existence of keys before
+          your program tries to access them, see "f" above.  If
+          you lose points on "f", you will lose them here as
+          well!]
