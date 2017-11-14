@@ -18,6 +18,7 @@ foreach ($result as $key => $value) {
 $justkeys = array_keys($result);
 echo "-----\n";
 var_dump($justkeys);
+echo "\nwas just the keys\n";
 
 // -------------------------------------------
 // A different approach - objects vs. arrays.  Note the second parameter to
