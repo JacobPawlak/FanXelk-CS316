@@ -116,6 +116,10 @@
 		echo '<table style="width:100%">';
 			echo '<tr>' . "\n";
 				foreach ($column_titles as $t => $column) {
+
+					//e) if the user selected a search parameter (from searchterms above), then in each 
+					// game that key appears ("Opponent", or "Points", etc) - your report shall make the 
+					// key and value BOLD in the output. If the key does not appears then no key/value is made bold.
 					if ($s_term == $column) {
 						echo '<td style="font-size:20px; font-weight:bold; color:black;">' . $column . '</td>' . "\n";
 					}
@@ -150,6 +154,7 @@
 
 
 		echo '</table>' . "\n";
+		//f) After the game results are output, output a summary of Win/Loss and the win percentage (format your choice).
 		$ratio = 100 * $total_wins/count($games);
 		echo "<p style='color: green; font-size: 20px;'>Win percentage is : $ratio\n";
 		echo "\n\n\n";
