@@ -121,23 +121,23 @@
 				}
 			echo '</tr>';
 
-			echo '<tr>';
 
-				foreach ($games as $game_array => $game) {
+			foreach ($games as $game_array => $game) {
 
-					foreach ($game as $g => $value) {
-						
-						if ($g == $s_term) {
-							echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td><br>' . "\n";
-						}
-						else{
-							echo '<td style="font-size:15px; color:black;">' . $value . '</td><br>' . "\n";	
-						}
+				foreach ($game as $g => $value) {
+					echo '<tr>';
+					
+					if ($g == $s_term) {
+						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td><br>' . "\n";
 					}
-
+					else{
+						echo '<td style="font-size:15px; color:black;">' . $value . '</td><br>' . "\n";	
+					}
+					echo '</tr>';
 				}
 
-			echo '</tr>';
+			}
+
 
 		echo '</table>';
 
