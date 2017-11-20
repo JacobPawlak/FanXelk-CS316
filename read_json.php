@@ -104,10 +104,13 @@
 			array_push($column_titles, $col_title);
 		}
 
-		foreach ($comments as $com_num => $comment) {
-			echo '<p style="font-size:20px; color:black;">' . $comment . '</p>' . "\n";
-		}
-		
+		echo '<table style="width:100%">';
+			echo '<tr>' . "\n";
+			foreach ($comments as $com_num => $comment) {
+				echo '<th style="color:black;">' . $comment . '</th>' . "\n";
+			}
+			echo '</tr>';
+		echo '</table>';
 
 		echo '<table style="width:100%">';
 			echo '<tr>' . "\n";
