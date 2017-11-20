@@ -97,6 +97,7 @@
     	$comments = $result_array["comments"];
 		$games = $result_array["games"];
 		$a_game = $games[0];
+		$total_wins = 0;
 
 		$column_titles = array();
 
@@ -107,7 +108,7 @@
 		echo '<table style="width:100%">';
 			echo '<tr>' . "\n";
 			foreach ($comments as $com_num => $comment) {
-				echo '<th style="color:black;">' . $comment . '</th>' . "\n";
+				echo '<th style="font-size: 22px; color:black;">' . $comment . '</th>' . "\n";
 			}
 			echo '</tr>';
 		echo '</table>';
@@ -130,6 +131,12 @@
 				echo '<tr>';
 				foreach ($game as $g => $value) {
 					
+					if ($g == "WinorLose") {
+						if ($value == "W") {
+							$total_wins += 1;
+						}
+					}
+
 					if ($g == $s_term) {
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
@@ -142,8 +149,9 @@
 			}
 
 
-		echo '</table>';
-
+		echo '</table>' . "\n";
+		$ratio = 100 * $total_wins/count($games);
+		echo "<p style='color: green; font-size: 20px;'>Win percentage is : $ratio\n";
 		echo "\n\n\n";
 
     }
