@@ -67,6 +67,7 @@
 		//b) open the file and use json_decode() to produce either objects or arrays (your choice).
 		$result_array = json_decode($result_file, true);
 
+		var_dump($s_term);
 
 		//c) verify that the file is proper JSON with json_last_error().
 		//echo json_last_error();
@@ -99,19 +100,58 @@
     	//d) Produce a report (in HTML format) with the appropriate title/header which is filled in from the "comments" JSON element.
     	$comments = $result_array["comments"];
 		$games = $result_array["games"];
+		$a_game = $games[0];
+
+		$column_titles = array();
+
+		foreach ($a_game as $col_title => $t) {
+			array_push($column_titles, $col_title);
+		}
+
+		foreach ($comments as $com_num => $comment) {
+			echo '<p style="font-size:20px; color:black;">' . $comment . '</p> <br>' . "\n";
+		}
+		
 
 		echo '<table style="width:100%">';
-			echo '<tr>';
-				foreach ($comments as $com_num => $comment) {
-					echo '<th style="font-size:20px; color:black;">' . $comment . '</th>' . "\n";
+			echo '<tr>' . "\n";
+				foreach ($column_titles as $t => $column) {
+					if ($s_term == $column) {
+						echo '<th style="font-size:20px; font-weight:bold; color:black;">' . $column . '</th>' . "\n";
+					}
+					else{
+						echo '<th style="font-size:20px; color:black;">' . $column . '</th>' . "\n";
+					}
 				}
 			echo '</tr>';
-		
+
+			echo '<tr>';
+
+				foreach ($games as $game_array => $game) {
+
+					foreach ($game as $g => $value) {
+						
+						if ($g == $s_term) {
+							echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
+						}
+						else{
+							echo '<td style="font-size:15px; color:black;">' . $value . '</td>' . "\n";	
+						}
+					}
+
+				}
+
+			echo '</tr>';
+
 		echo '</table>';
+
+		echo "\n\n\n";
 
     }
 
     showResults($sport_jsons[0]);
+    showResults($sport_jsons[1], $global_searchterms[1]);
+
 
 
 ?>
