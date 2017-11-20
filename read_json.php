@@ -52,6 +52,37 @@
 		}
 	}
 
+	echo "<form action='KuballPawlak_p4.php' method='get'>";
+
+		echo '<label for="title">Title</label>';
+		echo '<select id="title">';
+		foreach ($global_sports as $key => $value) {
+			echo '<option value="'. $value . '">' . $value . '</option>';
+		}
+		echo '</select>';
+		echo '<label for="results">Results</label>';
+		echo '<select id="results">';
+		foreach ($sport_jsons as $key => $value) {
+			echo '<option value="'. $value . '">' . $value . '</option>';
+		}
+		echo '</select>';
+		echo '<label for="searchterms">Search Term</label>';
+		echo '<select id="searchterms">';
+		foreach ($global_searchterms as $key => $value) {
+			echo '<option value="'. $value . '">' . $value . '</option>';
+		}
+		echo '</select>';
+		echo '<label for="highlight">Highlighter</label>';
+		echo '<select id="highlight">';
+			echo '<option value="all">All</option>';
+			echo '<option value="max">Max</option>';
+			echo '<option value="min">Min</option>';
+		echo '</select>';
+
+		echo '<input type="submit" value="Submit">';    	
+
+    echo "</form>";
+
 	//var_dump($global_sports);
 	//var_dump($sport_jsons);
 	//var_dump($global_searchterms);
@@ -161,9 +192,8 @@
 
     }
 
-    showResults($sport_jsons[0]);
-    showResults($sport_jsons[1], $global_searchterms[1]);
-
+    //showResults($sport_jsons[0]);
+    //showResults($sport_jsons[1], $global_searchterms[1]);
 
 
 ?>
