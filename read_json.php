@@ -59,27 +59,27 @@
 		foreach ($global_sports as $key => $value) {
 			echo '<option value="'. $value . '">' . $value . '</option>';
 		}
-		echo '</select>';
+		echo '</select><br>';
 		echo '<label for="results">Results</label>';
 		echo '<select id="results">';
 		foreach ($sport_jsons as $key => $value) {
 			echo '<option value="'. $value . '">' . $value . '</option>';
 		}
-		echo '</select>';
+		echo '</select><br>';
 		echo '<label for="searchterms">Search Term</label>';
 		echo '<select id="searchterms">';
 		foreach ($global_searchterms as $key => $value) {
 			echo '<option value="'. $value . '">' . $value . '</option>';
 		}
-		echo '</select>';
+		echo '</select><br>';
 		echo '<label for="highlight">Highlighter</label>';
 		echo '<select id="highlight">';
 			echo '<option value="all">All</option>';
 			echo '<option value="max">Max</option>';
 			echo '<option value="min">Min</option>';
-		echo '</select>';
+		echo '</select><br>';
 
-		echo '<input type="submit" value="Submit">';    	
+		echo '<input type="submit" value="Submit"><br>';    	
 
     echo "</form>";
 
