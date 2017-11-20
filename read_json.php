@@ -124,17 +124,17 @@
 
 			foreach ($games as $game_array => $game) {
 
+				echo '<tr>';
 				foreach ($game as $g => $value) {
-					echo '<tr>';
 					
 					if ($g == $s_term) {
-						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td><br>' . "\n";
+						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
 					else{
-						echo '<td style="font-size:15px; color:black;">' . $value . '</td><br>' . "\n";	
+						echo '<td style="font-size:15px; color:black;">' . $value . '</td>' . "\n";	
 					}
-					echo '</tr>';
 				}
+				echo '</tr>';
 
 			}
 
