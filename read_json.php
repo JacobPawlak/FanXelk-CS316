@@ -7,6 +7,7 @@
 	$sport_array = json_decode($sports_file, true);
 
 	$sport_jsons = array();
+	$global_sports = array();
 	$global_searchterms = array();
 
 	//var_dump($sport_array);
@@ -19,10 +20,11 @@
 		foreach ($value as $array_num => $title) {
 			//echo "array_num = " . $array_num . " title = " . $title;
 			//var_dump($title);
-			echo "\n\n";
-			echo "sport = " . $title["title"];
-			echo "\n\n";
+			//echo "sport = " . $title["title"];
 			$sport_name = $title["title"];
+			if (!in_array($sport_name, $global_sports)) {
+					array_push($global_sports, $sport_name);
+			}
 			$years = $title["results"];
 			$search_terms = $title["searchterms"];
 			
@@ -33,26 +35,27 @@
 				//var_dump($sport_name);
 				//var_dump($years);
 				//var_dump($sport_name);
-				echo "json file = $sport_name \n";
+				//echo "json file = $sport_name \n";
 				array_push($sport_jsons, $sport_name);
 			}
-			echo "\n\n";
+			//echo "\n\n";
 
 			foreach ($search_terms as $term => $term_name) {
 				//var_dump($term_name);
-				echo "searchterm = $term_name \n";
+				//echo "searchterm = $term_name \n";
 				if (!in_array($term_name, $global_searchterms)) {
 					array_push($global_searchterms, $term_name);
 				}
 			}
-			echo "\n\n";
+			//echo "\n\n";
 
 		}
 	}
 
-	var_dump($sport_jsons);
-	var_dump($global_searchterms);
-	echo "\n";
+	//var_dump($global_sports);
+	//var_dump($sport_jsons);
+	//var_dump($global_searchterms);
+	//echo "\n";
 	//echo json_last_error();
 	//echo;
 
@@ -66,37 +69,45 @@
 
 
 		//c) verify that the file is proper JSON with json_last_error().
-		echo json_last_error();
+		//echo json_last_error();
 		switch (json_last_error()) {
         	case JSON_ERROR_NONE:
-            	echo " - No errors \n";
+            	//echo " - No errors \n";
         		break;
         	case JSON_ERROR_DEPTH:
-            	echo " - Maximum stack depth exceeded \n";
+            	echo "<p style='font-size:20px; color:red;'> Maximum stack depth exceeded </p>\n";
         		break;
         	case JSON_ERROR_STATE_MISMATCH:
-        	    echo " - Underflow or the modes mismatch \n";
+        	    echo "<p style='font-size:20px; color:red;'> Underflow or the modes mismatch </p> \n";
         		break;
         	case JSON_ERROR_CTRL_CHAR:
-        	    echo " - Unexpected control character found \n";
+        	    echo "<p style='font-size:20px; color:red;'> Unexpected control character found </p> \n";
         		break;
         	case JSON_ERROR_SYNTAX:
-        	    echo " - Syntax error, malformed JSON \n";
+        	    echo "<p style='font-size:20px; color:red;'> Syntax error, malformed JSON  </p>\n";
         		break;
         	case JSON_ERROR_UTF8:
-        	    echo " - Malformed UTF-8 characters, possibly incorrectly encoded \n";
+        	    echo "<p style='font-size:20px; color:red;'> Malformed UTF-8 characters, possibly incorrectly encoded </p> \n";
         		break;
         	default:
-        	    echo " - Unknown error \n";
+        	    echo "<p style='font-size:20px; color:red;'> Unknown error </p> \n";
         		break;
     	}
 
-    	var_dump($result_array);
+    	//var_dump($result_array);
 
     	//d) Produce a report (in HTML format) with the appropriate title/header which is filled in from the "comments" JSON element.
     	$comments = $result_array["comments"];
-	$games = $result_array["games"];
+		$games = $result_array["games"];
 
+		echo '<table style="width:100%">';
+			echo '<tr>';
+				foreach ($comments as $com_num => $comment) {
+					echo '<th style="font-size:20px; color:black;">' . $comment . '</th>' . "\n";
+				}
+			echo '</tr>';
+		
+		echo '</table>';
 
     }
 
