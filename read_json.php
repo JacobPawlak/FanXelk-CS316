@@ -94,7 +94,9 @@
     	var_dump($result_array);
 
     	//d) Produce a report (in HTML format) with the appropriate title/header which is filled in from the "comments" JSON element.
-    	
+    	$comments = $result_array["comments"];
+	$games = $result_array["games"];
+
 
     }
 
