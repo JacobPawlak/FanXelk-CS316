@@ -2,6 +2,40 @@
 
 <?php
 
+	function start_html(){
+
+		echo '<html>';
+
+		echo '<!--Chelsea Kuball and Jacob Pawlak CS316 Project 4 - FanXelk November 18th, 2017 -->';
+
+		echo '<head>';
+
+        	echo '<title>Chelsea Kuball and Jacob Pawlak P4 CS316</title>';
+
+		echo '</head>';
+
+		echo '<body>';
+
+			echo '<p style="font-size: 30px; color: black; text-align: center">CS316 Chelsea Kuball and Jacob Pawlak | Project 4</p>';
+	}
+
+	function end_html(){
+
+		echo '</body></html>';
+		echo "\n";
+
+	}
+
+	if(isset($_GET['title'])){
+		showResults();
+	} 
+	else {
+		showForm();
+	}
+
+	function showForm(){
+
+	start_html();
 
 	$sports_file = file_get_contents("Sports.json") or die ("That file does not exist in this directory");
 	$sport_array = json_decode($sports_file, true);
@@ -52,7 +86,7 @@
 		}
 	}
 
-	echo "<form action='KuballPawlak_p4.php' method='get'>";
+	echo "<form action='read_json.php' method='get'>";
 
 		echo '<label for="title">Title</label>';
 		echo '<select id="title">';
@@ -83,15 +117,14 @@
 
     echo "</form>";
 
-	//var_dump($global_sports);
-	//var_dump($sport_jsons);
-	//var_dump($global_searchterms);
-	//echo "\n";
-	//echo json_last_error();
-	//echo;
+    end_html();
+
+	}
 
 	function showResults($file_name, $s_term = ""){
 		
+		start_html();
+
 		//a) check for existence of the file, act accordingly.
 		$result_file = file_get_contents($file_name) or die ("That file does not exist in this directory");
 		
@@ -189,6 +222,8 @@
 		$ratio = 100 * $total_wins/count($games);
 		echo "<p style='color: green; font-size: 20px;'>Win percentage is : $ratio\n";
 		echo "\n\n\n";
+
+		end_html();
 
     }
 
