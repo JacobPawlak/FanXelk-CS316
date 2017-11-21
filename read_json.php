@@ -26,7 +26,7 @@
 
 	}
 
-	if(isset($_GET['title'])){
+	if(isset($_GET['submit'])){
 		showResults();
 	} 
 	else {
@@ -86,7 +86,7 @@
 		}
 	}
 
-	echo "<form action='read_json.php' method='get'>";
+	echo '<form action="<?php echo $_SERVER[\'PHP_SELF\']; ?>" method="get">';
 
 		echo '<label for="title">Title</label>';
 		echo '<select id="title">';
