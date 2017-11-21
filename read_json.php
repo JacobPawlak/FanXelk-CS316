@@ -86,7 +86,7 @@
 		}
 	}
 
-	echo '<form action="<?php echo $_SERVER[\'PHP_SELF\']; ?>" method="get">';
+	echo '<form action="read_json.php" method="get">';
 
 		echo '<label for="title">Title</label>';
 		echo '<select id="title">';
