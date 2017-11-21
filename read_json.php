@@ -121,12 +121,14 @@
 
 	}
 
-	function showResults($file_name, $s_term = ""){
+	function showResults(){
 		
 		start_html();
 
+		$s_term = $_GET['searchterms'];
 		//a) check for existence of the file, act accordingly.
 		$result_file = file_get_contents($file_name) or die ("That file does not exist in this directory");
+		$result_file = file_get_contents($_GET['title']) or die ("That file does not exist in this directory");
 		
 		//b) open the file and use json_decode() to produce either objects or arrays (your choice).
 		$result_array = json_decode($result_file, true);
