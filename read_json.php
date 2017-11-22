@@ -117,6 +117,8 @@
 
     echo "</form>";
 
+    showResults();
+
     end_html();
 
 	}
@@ -160,6 +162,8 @@
 				$sport_name = $title["title"];
 				if ($sport_name == $s_title) {
 					$years = $title["results"];
+					//var_dump($years);
+					//var_dump($sport_name);
 					
 					foreach ($years as $sport => $sport_name) {
 						//echo "sport = " . $sport . " sport_name = " . $sport_name;
@@ -168,7 +172,10 @@
 						//var_dump($sport_name);
 						//echo "json file = $sport_name \n";
 						//array_push($sport_jsons, $sport);
-						if ($sport = $s_results) {
+						//var_dump($sport);
+						//var_dump($sport_name);
+						//var_dump($s_results);
+						if ($sport == $s_results) {
 							$result = $sport_name;
 						}
 
