@@ -1,0 +1,44 @@
+ { 
+     "comments": [
+		"University of Kentucky",
+		"Men's Football Team",
+		"2015",
+		"Season Results"
+	],
+	"games": [
+		{ "Opponent": "Louisiana Lafayette", "Date": "09/05/15", "WinorLose": "W",
+			"Points": "40", "Touchdowns": "6"
+		},
+		{ "Opponent": "South Carolina", "Date": "09/12/15", "WinorLose": "W",
+			"Points": "26", "Touchdowns": "4"
+		},
+		{ "Opponent": "Florida", "Date": "09/19/15", "WinorLose": "L",
+			"Points": "9", "Touchdowns": "1"
+		},
+		{ "Opponent": "Missouri", "Date": "09/26/15", "WinorLose": "W",
+			"Points": "21", "Touchdowns": "3"
+		},
+		{ "Opponent": "Eastern Kentucky", "Date": "10/03/15", "WinorLose": "W",
+			"Points": "34", "Touchdowns": "5"
+		},
+		{ "Opponent": "Auburn", "Date": "10/15/15", "WinorLose": "L",
+			"Points": "27", "Touchdowns": "3"
+		},
+		{ "Opponent": "Mississippi State", "Date": "10/24/15", "WinorLose": "L",
+			"Points": "16", "Touchdowns": "2"
+		},
+		{ "Opponent": "Tennessee", "Date": "10/31/15", "WinorLose": "L",
+			"Points": "21", "Touchdowns": "3"
+		},
+		{ "Opponent": "Georgia", "Date": "11/07/15", "WinorLose": "L",
+			"Points": "3", "Touchdowns": "0"
+		},
+		{ "Opponent": "Vanderbuilt", "Date": "11/14/15", "WinorLose": "L",
+			"Points": "17", "Touchdowns": "2"
+		},
+		{ "Opponent": "Louisville", "Date": "11/28/15", "WinorLose": "L",
+			"Points": "24", "Touchdowns": "3"
+		}
+	]
+}
+
