@@ -70,7 +70,7 @@
 				//var_dump($years);
 				//var_dump($sport_name);
 				//echo "json file = $sport_name \n";
-				array_push($sport_jsons, $sport_name);
+				array_push($sport_jsons, $sport);
 			}
 			//echo "\n\n";
 
