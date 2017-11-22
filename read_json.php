@@ -125,10 +125,63 @@
 		
 		start_html();
 
+		$s_title =  $_GET['title'];
+		$s_results = $_GET['results'];
 		$s_term = $_GET['searchterms'];
+		$s_highlight = $_GET['highlight'];
+
+
+
 		//a) check for existence of the file, act accordingly.
-		//$result_file = file_get_contents($file_name) or die ("That file does not exist in this directory");
-		$result_file = file_get_contents($_GET['results']) or die ("That file does not exist in this directory");
+
+		//looking for the result that matches with the right title
+		//e.g. "College Football -> Y2015"
+
+		$result = "blank";
+
+		$sports_file = file_get_contents("Sports.json") or die ("That file does not exist in this directory");
+		$sport_array = json_decode($sports_file, true);
+
+		$sport_jsons = array();
+		$global_sports = array();
+		$global_searchterms = array();
+
+		//var_dump($sport_array);
+
+		foreach ($sport_array as $key => $value) {
+
+			//var_dump($value);
+			//echo "Key = " . (string)$key . "Value = " . (string)$value;
+
+			foreach ($value as $array_num => $title) {
+				//echo "array_num = " . $array_num . " title = " . $title;
+				//var_dump($title);
+				//echo "sport = " . $title["title"];
+				$sport_name = $title["title"];
+				if ($sport_name == $s_title) {
+					$years = $title["results"];
+					
+					foreach ($years as $sport => $sport_name) {
+						//echo "sport = " . $sport . " sport_name = " . $sport_name;
+						//var_dump($sport);
+						//var_dump($years);
+						//var_dump($sport_name);
+						//echo "json file = $sport_name \n";
+						//array_push($sport_jsons, $sport);
+						if ($sport = $s_results) {
+							$result = $sport_name;
+						}
+
+					}
+				}
+			}
+		}
+
+
+
+
+
+		$result_file = file_get_contents($result) or die ("That title does not have the year you selected, please try again");
 		
 		//b) open the file and use json_decode() to produce either objects or arrays (your choice).
 		$result_array = json_decode($result_file, true);
