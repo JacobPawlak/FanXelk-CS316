@@ -117,8 +117,6 @@
 
     echo "</form>";
 
-    showResults();
-
     end_html();
 
 	}
