@@ -37,7 +37,7 @@
 
 	start_html();
 
-	$sports_file = file_get_contents("Sports.json") or die ("That file does not exist in this directory");
+	$sports_file = file_get_contents("Sports.json") or die ("That file does not exist in this directory<br><a href='read_json.php'> Return to Main Page</a>");
 	$sport_array = json_decode($sports_file, true);
 
 	$sport_jsons = array();
@@ -139,7 +139,7 @@
 
 		$result = "blank";
 
-		$sports_file = file_get_contents("Sports.json") or die ("That file does not exist in this directory");
+		$sports_file = file_get_contents("Sports.json") or die ("That file does not exist in this directory<br><a href='read_json.php'> Return to Main Page</a>");
 		$sport_array = json_decode($sports_file, true);
 
 		$sport_jsons = array();
@@ -186,7 +186,7 @@
 
 
 
-		$result_file = file_get_contents($result) or die ("That title does not have the year you selected, please try again");
+		$result_file = file_get_contents($result) or die ("That title does not have the year you selected, please try again<br><a href='read_json.php'> Return to Main Page</a>");
 		
 		//b) open the file and use json_decode() to produce either objects or arrays (your choice).
 		$result_array = json_decode($result_file, true);
@@ -282,6 +282,7 @@
 		$ratio = 100 * $total_wins/count($games);
 		echo "<p style='color: green; font-size: 20px;'>Win percentage is : $ratio\n";
 		echo "\n\n\n";
+		echo '<br><a href="read_json.php"> Return to Main Page</a>';
 
 		end_html();
 
