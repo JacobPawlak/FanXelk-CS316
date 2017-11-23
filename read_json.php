@@ -283,6 +283,7 @@
 			foreach ($games as $game_array => $game) {
 				//var_dump($game);
 				foreach ($game as $c_title => $c_value) {
+					var_dump($c_value);
 					if ($c_title === $s_term) {
 						if (!in_array($c_value, $search_array)) {
 							array_push($c_value, $search_array);
