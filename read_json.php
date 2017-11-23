@@ -283,7 +283,7 @@
 			foreach ($games as $game_array => $game) {
 				//var_dump($game);
 				foreach ($game as $c_title => $c_value) {
-					var_dump(($c_title === $s_term));
+					//var_dump(($c_title === $s_term));
 					if ($c_title === $s_term) {
 						var_dump($c_value);
 						if (!in_array($c_value, $search_array)) {
@@ -292,41 +292,41 @@
 					}
 				}
 
-				var_dump($search_array);
 				
 				
-				if ($s_highlight === "min") {
-					$min = NULL;
-					foreach ($game as $g => $value) {
+				// if ($s_highlight === "min") {
+				// 	$min = NULL;
+				// 	foreach ($game as $g => $value) {
 
-						if ($g === $s_term) {
-							$res = strcmp($value, $min);
-							//var_dump($res);
-							if ($res == -1) {
-							//	var_dump($min);
-							//	var_dump($value);
-								$min = $value;
-							}
-						}
-					}
-					$minmax_val = $min; 
-				}
-				elseif ($s_highlight === "max") {
-					$max = NULL;
-					foreach ($game as $g => $value) {
-						if ($g === $s_term) {
-							if (strcmp($value, $max) > 0) {
-							//	var_dump($max);
-							//	var_dump($value);
-								$max = $value;
-							}
-						}
-					}
-					$minmax_val = $max;
-				}
+				// 		if ($g === $s_term) {
+				// 			$res = strcmp($value, $min);
+				// 			//var_dump($res);
+				// 			if ($res == -1) {
+				// 			//	var_dump($min);
+				// 			//	var_dump($value);
+				// 				$min = $value;
+				// 			}
+				// 		}
+				// 	}
+				// 	$minmax_val = $min; 
+				// }
+				// elseif ($s_highlight === "max") {
+				// 	$max = NULL;
+				// 	foreach ($game as $g => $value) {
+				// 		if ($g === $s_term) {
+				// 			if (strcmp($value, $max) > 0) {
+				// 			//	var_dump($max);
+				// 			//	var_dump($value);
+				// 				$max = $value;
+				// 			}
+				// 		}
+				// 	}
+				// 	$minmax_val = $max;
+				// }
 				
 			}
 
+			var_dump(sort($search_array));
 
 			foreach ($games as $game_array => $game) {
 
