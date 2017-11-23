@@ -325,8 +325,8 @@
 				// }
 				
 			}
-
-			var_dump(sort($search_array));
+			sort($search_array);
+			var_dump(($search_array));
 
 			foreach ($games as $game_array => $game) {
 
