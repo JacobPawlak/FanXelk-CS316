@@ -277,12 +277,23 @@
 
 			$minmax_val = NULL;
 
+
+			$search_array = array();
+
 			foreach ($games as $game_array => $game) {
+				var_dump($game_array);
+				echo "game_array";
+				var_dump($game);
+				echo "game";
+				//if () {
+				//	# code...
+				//}
 				
 				
 				if ($s_highlight === "min") {
 					$min = NULL;
 					foreach ($game as $g => $value) {
+
 						if ($g === $s_term) {
 							$res = strcmp($value, $min);
 							var_dump($res);
