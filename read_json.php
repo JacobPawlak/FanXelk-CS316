@@ -365,10 +365,8 @@
 		//f) After the game results are output, output a summary of Win/Loss and the win percentage (format your choice).
 		$ratio = 100 * $total_wins/count($games);
 		$total_losses = count($games)-$total_wins;
-		echo "<p style='color: green; font-size: 20px;'>Win percentage is : $ratio </p>" ;
-		echo "<p style='color: green; font-size: 20px;'>Total Wins : $total_wins </p>";
-		echo "<p style='color: green; font-size: 20px;'>Total Losses : $total_losses </p>";
-		//echo "\n\n\n";
+		echo "<p style='color: green; font-size: 20px;'>Win percent age is : $ratio </p>" ;
+		echo "<p style='color: green; font-size: 20px;'>Total Wins/Losses : $total_wins/$total_losses </p>";
 		echo '<br><a href="read_json.php"> Return to Main Page</a>';
 
 		end_html();
