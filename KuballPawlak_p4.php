@@ -98,21 +98,26 @@
 		}
 	}
 
-	//this is the form, its action points back to itself, and we are using the 
+	//this is the form, its action points back to itself, and we are using the get method 
 	echo '<form action="KuballPawlak_p4.php" method="get">';
 
+		//select tag for the titles
 		echo '<label for="title">Title</label>';
 		echo '<select name="title" id="title">';
 		foreach ($global_sports as $key => $value) {
 			echo '<option value="'. $value . '">' . $value . '</option>';
 		}
 		echo '</select><br>';
+
+		//select tag for the results
 		echo '<label for="results">Results</label>';
 		echo '<select name="results" id="results">';
 		foreach ($sport_jsons as $key => $value) {
 			echo '<option value="'. $value . '">' . $value . '</option>';
 		}
 		echo '</select><br>';
+
+		//select tag for the search terms
 		echo '<label for="searchterms">Search Term (Optional)</label>';
 		echo '<select name="searchterms" id="searchterms">';
 			echo '<option value="NA"></option>';
@@ -120,6 +125,8 @@
 			echo '<option value="'. $value . '">' . $value . '</option>';
 		}
 		echo '</select><br>';
+
+		//select tag for the highlighter
 		echo '<label for="highlight">Highlighter</label>';
 		echo '<select name="highlight" id="highlight">';
 			echo '<option value="all">All</option>';
@@ -127,18 +134,23 @@
 			echo '<option value="min">Min</option>';
 		echo '</select><br>';
 
+		//submit button
 		echo '<input type="submit" name="submit" value="submit"><br>';    	
 
     echo "</form>";
 
+    //close out the html, its done for now
     end_html();
 
 	}
 
+	//our showResults() function
 	function showResults(){
 		
+		//again, start the html skele
 		start_html();
 
+		//a few statements for setting (and checking) the status of our $_get variables
 		if (isset($_GET['title'])) {
 			$s_title =  $_GET['title'];
 		}
@@ -173,24 +185,28 @@
 
 		$result = "blank";
 
+		//same thing that we did above
 		$sports_file = file_get_contents("Sports.json") or die ("That file does not exist in this directory<br><a href='read_json.php'> Return to Main Page</a>");
 		$sport_array = json_decode($sports_file, true);
 
+		//dont actually need these here but i am too scared to pull them out.
 		$sport_jsons = array();
 		$global_sports = array();
 		$global_searchterms = array();
 
+		//looking for the file that the user wants, if we find a match between the result and the title
+		//	set the $result to that file
 		foreach ($sport_array as $key => $value) {
 
 			foreach ($value as $array_num => $title) {
 				
 				$sport_name = $title["title"];
-				if ($sport_name == $s_title) {
+				if ($sport_name === $s_title) {
 					$years = $title["results"];
 					
 					foreach ($years as $sport => $sport_name) {
 
-						if ($sport == $s_results) {
+						if ($sport === $s_results) {
 							$result = $sport_name;
 						}
 
@@ -200,6 +216,7 @@
 		}
 
 
+		//grab the contents out of the json that we want to look at
 		$result_file = file_get_contents($result) or die ("That title does not have the year you selected, please try again<br><a href='read_json.php'> Return to Main Page</a>");
 		
 		//b) open the file and use json_decode() to produce either objects or arrays (your choice).
@@ -243,6 +260,7 @@
 			array_push($column_titles, $col_title);
 		}
 
+		//this starts the displaying process, we make a table for the comments
 		echo '<table style="width:100%">';
 			echo '<tr>' . "\n";
 			foreach ($comments as $com_num => $comment) {
@@ -250,6 +268,8 @@
 			}
 			echo '</tr>';
 		echo '</table>';
+
+		//now a table for the column headers
 
 		echo '<table style="width:100%">';
 			echo '<tr>' . "\n";
@@ -259,7 +279,7 @@
 					//e) if the user selected a search parameter (from searchterms above), then in each 
 					// game that key appears ("Opponent", or "Points", etc) - your report shall make the 
 					// key and value BOLD in the output. If the key does not appears then no key/value is made bold.
-					if (($s_term == $column) && ( ($s_highlight == "all") || ($s_highlight == "max") || ($s_highlight == "min") )) {
+					if (($s_term === $column) && ( ($s_highlight === "all") || ($s_highlight === "max") || ($s_highlight === "min") )) {
 						echo '<td style="font-size:22px; font-weight:bold; color:black;">' . $column . '</td>' . "\n";
 					}
 					else{
@@ -268,8 +288,6 @@
 				}
 			echo '</tr>';
 
-			$minmax_val = NULL;
-
 
 			$search_array = array();
 
@@ -277,7 +295,7 @@
 				
 				foreach ($game as $c_title => $c_value) {
 					
-					if ($c_title === $s_term) {
+					if ($c_title ==== $s_term) {
 						if (!in_array($c_value, $search_array)) {
 							array_push($search_array, $c_value);
 						}
@@ -292,25 +310,25 @@
 				echo '<tr>';
 				foreach ($game as $g => $value) {
 					
-					if ($g == "WinorLose") {
-						if ($value == "W") {
+					if ($g === "WinorLose") {
+						if ($value === "W") {
 							$total_wins += 1;
 						}
 					}
 
-					if (($g == $s_term) && ($s_highlight == "all")) {
+					if (($g === $s_term) && ($s_highlight === "all")) {
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g == $s_term) && ($s_highlight == "max") && ($value == $search_array[count($search_array) - 1])){
+					elseif(($g === $s_term) && ($s_highlight === "max") && ($value === $search_array[count($search_array) - 1])){
 						echo '<td style="font-size:15px; font-weight:bold; color:blue;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g == $s_term) && ($s_highlight == "max") && ($value != $search_array[count($search_array) - 1])){
+					elseif(($g === $s_term) && ($s_highlight === "max") && ($value != $search_array[count($search_array) - 1])){
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g == $s_term) && ($s_highlight == "min") && ($value == $search_array[0])) {
+					elseif(($g === $s_term) && ($s_highlight === "min") && ($value === $search_array[0])) {
 						echo '<td style="font-size:15px; font-weight:bold; color:red;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g == $s_term) && ($s_highlight == "min") && ($value != $search_array[0])) {
+					elseif(($g === $s_term) && ($s_highlight === "min") && ($value != $search_array[0])) {
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
 					else{
@@ -326,7 +344,7 @@
 		//f) After the game results are output, output a summary of Win/Loss and the win percentage (format your choice).
 		$ratio = 100 * $total_wins/count($games);
 		$total_losses = count($games)-$total_wins;
-		echo "<p style='color: green; font-size: 20px;'>Win percent age is : $ratio </p>" ;
+		echo "<p style='color: green; font-size: 20px;'>Win percentage is : $ratio </p>" ;
 		echo "<p style='color: green; font-size: 20px;'>Total Wins / Losses : $total_wins / $total_losses </p>";
 		echo '<br><a href="read_json.php"> Return to Main Page</a>';
 
