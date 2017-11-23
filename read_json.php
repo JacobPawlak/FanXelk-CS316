@@ -328,8 +328,14 @@
 					elseif(($g == $s_term) && ($s_highlight == "max") && ($value == $minmax_val)){
 						echo '<td style="font-size:15px; font-weight:bold; color:blue;">' . $value . '</td>' . "\n";
 					}
+					elseif(($g == $s_term) && ($s_highlight == "max") && ($value != $minmax_val)){
+						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
+					}
 					elseif(($g == $s_term) && ($s_highlight == "min") && ($value == $minmax_val)) {
 						echo '<td style="font-size:15px; font-weight:bold; color:red;">' . $value . '</td>' . "\n";
+					}
+					elseif(($g == $s_term) && ($s_highlight == "min") && ($value != $minmax_val)) {
+						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
 					else{
 						echo '<td style="font-size:15px; color:black;">' . $value . '</td>' . "\n";	
