@@ -281,14 +281,13 @@
 			$search_array = array();
 
 			foreach ($games as $game_array => $game) {
-				var_dump($game_array);
-				echo "game_array";
-				var_dump($game);
-				echo "game";
-				echo "\n\n";
-				//if () {
-				//	# code...
-				//}
+				if ($game_array === $s_term) {
+					if (!in_array($game, $search_array)) {
+						array_push($game, $search_array);
+					}
+				}
+
+				var_dump($search_array);
 				
 				
 				if ($s_highlight === "min") {
@@ -297,10 +296,10 @@
 
 						if ($g === $s_term) {
 							$res = strcmp($value, $min);
-							var_dump($res);
+							//var_dump($res);
 							if ($res == -1) {
-								var_dump($min);
-								var_dump($value);
+							//	var_dump($min);
+							//	var_dump($value);
 								$min = $value;
 							}
 						}
@@ -312,8 +311,8 @@
 					foreach ($game as $g => $value) {
 						if ($g === $s_term) {
 							if (strcmp($value, $max) > 0) {
-								var_dump($max);
-								var_dump($value);
+							//	var_dump($max);
+							//	var_dump($value);
 								$max = $value;
 							}
 						}
