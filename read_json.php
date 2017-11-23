@@ -284,12 +284,12 @@
 					$min = NULL;
 					foreach ($game as $g => $value) {
 						if ($g == $s_term) {
-
+							//$res = strcmp($value, $)
 							if (strcmp($value, $min) < 0) {
-							}
 								var_dump($min);
 								var_dump($value);
 								$min = $value;
+							}
 						}
 					}
 					$minmax_val = $min; 
