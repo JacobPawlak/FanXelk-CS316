@@ -126,10 +126,30 @@
 		
 		start_html();
 
-		$s_title =  $_GET['title'];
-		$s_results = $_GET['results'];
-		$s_term = $_GET['searchterms'];
-		$s_highlight = $_GET['highlight'];
+		if (isset($_GET['title'])) {
+			$s_title =  $_GET['title'];
+		}
+		else{
+			$s_title = "blank";
+		}
+		if (isset($_GET['results'])) {
+			$s_results = $_GET['results'];
+		}
+		else{
+			$s_results = "blank";	
+		}
+		if (isset($_GET['searchterms'])) {
+			$s_term = $_GET['searchterms'];
+		}
+		else{
+			$s_term = "blank";
+		}
+		if (isset($_GET['highlight'])) {
+			$s_highlight = $_GET['highlight'];
+		}
+		else{
+			$s_highlight = "blank";
+		}
 
 
 
@@ -241,7 +261,6 @@
 		echo '<table style="width:100%">';
 			echo '<tr>' . "\n";
 
-				echo "$s_highlight";
 				foreach ($column_titles as $t => $column) {
 
 					//e) if the user selected a search parameter (from searchterms above), then in each 
@@ -250,16 +269,50 @@
 					if (($s_term == $column) && ($s_highlight == "all")) {
 						echo '<td style="font-size:22px; font-weight:bold; color:black;">' . $column . '</td>' . "\n";
 					}
+					elseif(($s_term == $column) && ($s_highlight == "max")){
+						echo '<td style="font-size:22px; font-weight:bold; color:black;">' . $column . '</td>' . "\n";
+					}
+					elseif(($s_term == $column) && ($s_highlight == "min")){
+						echo '<td style="font-size:22px; font-weight:bold; color:black;">' . $column . '</td>' . "\n";
+					}
 					else{
 						echo '<td style="font-size:20px; color:black;">' . $column . '</td>' . "\n";
 					}
 				}
 			echo '</tr>';
 
+			$minmax_val = NULL;
+
+			foreach ($games as $game_array => $game) {
+				
+				
+				if ($s_highlight == "min") {
+					$min = 10000000;
+					foreach ($game as $g => $value) {
+						if ($value <= $min) {
+							$min = $value;
+						}
+					}
+					$minmax_val = $min; 
+				}
+				elseif ($s_highlight == "max") {
+					$max = 0;
+					foreach ($game as $g => $value) {
+						if ($value >= $max) {
+							$max = $value;
+						}
+					}
+					$minmax_val = $max;
+				}
+				
+			}
+
+			var_dump($minmax_val);
 
 			foreach ($games as $game_array => $game) {
 
 				echo '<tr>';
+				$minmax_val = "blank";
 				foreach ($game as $g => $value) {
 					
 					if ($g == "WinorLose") {
@@ -270,6 +323,12 @@
 
 					if (($g == $s_term) && ($s_highlight == "all") ) {
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
+					}
+					elseif(($s_term == $column) && ($s_highlight == "max")){
+
+					}
+					elseif (($s_term == $column) && ($s_highlight == "min")) {
+						# code...
 					}
 					else{
 						echo '<td style="font-size:15px; color:black;">' . $value . '</td>' . "\n";	
