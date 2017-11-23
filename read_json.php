@@ -102,7 +102,7 @@
 		echo '</select><br>';
 		echo '<label for="searchterms">Search Term (Optional)</label>';
 		echo '<select name="searchterms" id="searchterms">';
-			echo '<option value="     "></option>';
+			echo '<option value="NA"></option>';
 		foreach ($global_searchterms as $key => $value) {
 			echo '<option value="'. $value . '">' . $value . '</option>';
 		}
