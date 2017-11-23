@@ -312,7 +312,6 @@
 			foreach ($games as $game_array => $game) {
 
 				echo '<tr>';
-				$minmax_val = "blank";
 				foreach ($game as $g => $value) {
 					
 					if ($g == "WinorLose") {
@@ -321,14 +320,14 @@
 						}
 					}
 
-					if (($g == $s_term) && ($s_highlight == "all") ) {
+					if (($g == $s_term) && ($s_highlight == "all")) {
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
-					elseif(($s_term == $column) && ($s_highlight == "max")){
-
+					elseif(($g == $s_term) && ($s_highlight == "max") && ($value == $minmax_val)){
+						echo '<td style="font-size:15px; font-weight:bold; color:blue;">' . $value . '</td>' . "\n";
 					}
-					elseif (($s_term == $column) && ($s_highlight == "min")) {
-						# code...
+					elseif(($g == $s_term) && ($s_highlight == "min") && ($value == $minmax_val)) {
+						echo '<td style="font-size:15px; font-weight:bold; color:red;">' . $value . '</td>' . "\n";
 					}
 					else{
 						echo '<td style="font-size:15px; color:black;">' . $value . '</td>' . "\n";	
