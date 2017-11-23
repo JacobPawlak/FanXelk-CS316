@@ -281,10 +281,12 @@
 			$search_array = array();
 
 			foreach ($games as $game_array => $game) {
-				var_dump($game);
-				if ($game_array === $s_term) {
-					if (!in_array($game, $search_array)) {
-						array_push($game, $search_array);
+				//var_dump($game);
+				foreach ($game as $c_title => $c_value) {
+					if ($c_title === $s_term) {
+						if (!in_array($c_value, $search_array)) {
+							array_push($c_value, $search_array);
+						}
 					}
 				}
 
