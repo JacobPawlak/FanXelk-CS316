@@ -266,13 +266,7 @@
 					//e) if the user selected a search parameter (from searchterms above), then in each 
 					// game that key appears ("Opponent", or "Points", etc) - your report shall make the 
 					// key and value BOLD in the output. If the key does not appears then no key/value is made bold.
-					if (($s_term == $column) && ($s_highlight == "all")) {
-						echo '<td style="font-size:22px; font-weight:bold; color:black;">' . $column . '</td>' . "\n";
-					}
-					elseif(($s_term == $column) && ($s_highlight == "max")){
-						echo '<td style="font-size:22px; font-weight:bold; color:black;">' . $column . '</td>' . "\n";
-					}
-					elseif(($s_term == $column) && ($s_highlight == "min")){
+					if (($s_term == $column) && ( ($s_highlight == "all") || ($s_highlight == "max") || ($s_highlight == "min") )) {
 						echo '<td style="font-size:22px; font-weight:bold; color:black;">' . $column . '</td>' . "\n";
 					}
 					else{
@@ -287,19 +281,24 @@
 				
 				
 				if ($s_highlight == "min") {
-					$min = 10000000;
+					$min = NULL;
 					foreach ($game as $g => $value) {
-						if ($value <= $min) {
-							$min = $value;
+						if ($g == $s_term) {
+
+							if ($value < $min) {
+								$min = $value;
+							}
 						}
 					}
 					$minmax_val = $min; 
 				}
 				elseif ($s_highlight == "max") {
-					$max = 0;
+					$max = NULL;
 					foreach ($game as $g => $value) {
-						if ($value >= $max) {
-							$max = $value;
+						if ($g == $s_term) {
+							if ($value >= $max) {
+								$max = $value;
+							}
 						}
 					}
 					$minmax_val = $max;
