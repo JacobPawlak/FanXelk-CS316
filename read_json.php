@@ -281,7 +281,7 @@
 			$search_array = array();
 
 			foreach ($games as $game_array => $game) {
-				var_dump($game_array);
+				var_dump($game);
 				if ($game_array === $s_term) {
 					if (!in_array($game, $search_array)) {
 						array_push($game, $search_array);
