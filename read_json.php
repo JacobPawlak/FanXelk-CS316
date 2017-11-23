@@ -285,7 +285,7 @@
 					foreach ($game as $g => $value) {
 						if ($g == $s_term) {
 
-							if ($value < $min) {
+							if (strcmp($value, $min) < 0) {
 								$min = $value;
 								var_dump($minmax_val);
 								var_dump($value);
@@ -298,7 +298,7 @@
 					$max = NULL;
 					foreach ($game as $g => $value) {
 						if ($g == $s_term) {
-							if ($value >= $max) {
+							if (strcmp($value, $min) > 0) {
 								$max = $value;
 								var_dump($minmax_val);
 								var_dump($value);
