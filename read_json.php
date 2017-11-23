@@ -2,14 +2,6 @@
 
 <?php
 
-//Chelsea Kuball and Jacob Pawlak
-//November 22nd, 2017
-//CS316 Project 4 - PHP
-
-//Implemented in full:
-// a, b, c, d, e, f, g, h, i
-
-	// build the shell of the html file, will be called at the beggining of both functions
 	function start_html(){
 
 		echo '<html>';
@@ -27,7 +19,6 @@
 			echo '<p style="font-size: 30px; color: black; text-align: center">CS316 Chelsea Kuball and Jacob Pawlak | Project 4</p>';
 	}
 
-	//close the end of the html shell
 	function end_html(){
 
 		echo '</body></html>';
@@ -35,71 +26,67 @@
 
 	}
 
-
-	//this is where we determine what function we should be in.
-	//	this helps us keep the php and html form in the same file
-	//	If the submit button has been clicked, and yes we are expecting
-	//	you to either use the form or to know to include the submit button
-	//	when you wget or curl or whatever
 	if(isset($_GET['submit'])){
-		//if the submit button has been set, then we want to showResults
 		showResults();
 	} 
 	else {
-		//if the submit button has not been clicked/set, we just want to show
-		//	the form - we assume that the user still needs to enter in the data
 		showForm();
 	}
 
-	//this is the function that displays the html form - it needs to read in sports.json
 	function showForm(){
 
-	//call the html shell starter
 	start_html();
 
-	//read in the Sports.json file as a string, or die if it is not found
 	$sports_file = file_get_contents("Sports.json") or die ("That file does not exist in this directory<br><a href='read_json.php'> Return to Main Page</a>");
-	//turn that string into a json object, we want to use arrays because why not.
 	$sport_array = json_decode($sports_file, true);
 
-	//global arrays for the filling of the select tags
 	$sport_jsons = array();
 	$global_sports = array();
 	$global_searchterms = array();
 
-	//loop through sports.json for each sport title
+	//var_dump($sport_array);
+
 	foreach ($sport_array as $key => $value) {
 
-		//loop through each sport for all its components
+		//var_dump($value);
+		//echo "Key = " . (string)$key . "Value = " . (string)$value;
+
 		foreach ($value as $array_num => $title) {
-			
-			//if the title of the sport is not already in the 'global' array for the
-			//	sport titles, add it
+			//echo "array_num = " . $array_num . " title = " . $title;
+			//var_dump($title);
+			//echo "sport = " . $title["title"];
 			$sport_name = $title["title"];
 			if (!in_array($sport_name, $global_sports)) {
 					array_push($global_sports, $sport_name);
 			}
-			//grab the array of results (Y20XX) and the array of search terms
 			$years = $title["results"];
 			$search_terms = $title["searchterms"];
+			
+			//var_dump($years);
 
 			foreach ($years as $sport => $sport_name) {
-				//push the (Y20XX) string to its global array
+				//echo "sport = " . $sport . " sport_name = " . $sport_name;
+				//var_dump($sport_name);
+				//var_dump($years);
+				//var_dump($sport_name);
+				//echo "json file = $sport_name \n";
 				array_push($sport_jsons, $sport);
 			}
+			//echo "\n\n";
 
 			foreach ($search_terms as $term => $term_name) {
-				
-				//if the search term for each sport is not already in the global array, put it there
+				//var_dump($term_name);
+				//echo "searchterm = $term_name \n";
 				if (!in_array($term_name, $global_searchterms)) {
 					array_push($global_searchterms, $term_name);
 				}
 			}
+			//echo "\n\n";
+
 		}
 	}
 
-	//this is the form, its action points back to itself, and we are using the 
-	echo '<form action="KuballPawlak_p4.php" method="get">';
+	echo '<form action="read_json.php" method="get">';
 
 		echo '<label for="title">Title</label>';
 		echo '<select name="title" id="title">';
@@ -180,16 +167,33 @@
 		$global_sports = array();
 		$global_searchterms = array();
 
+		//var_dump($sport_array);
+
 		foreach ($sport_array as $key => $value) {
 
+			//var_dump($value);
+			//echo "Key = " . (string)$key . "Value = " . (string)$value;
+
 			foreach ($value as $array_num => $title) {
-				
+				//echo "array_num = " . $array_num . " title = " . $title;
+				//var_dump($title);
+				//echo "sport = " . $title["title"];
 				$sport_name = $title["title"];
 				if ($sport_name == $s_title) {
 					$years = $title["results"];
+					//var_dump($years);
+					//var_dump($sport_name);
 					
 					foreach ($years as $sport => $sport_name) {
-
+						//echo "sport = " . $sport . " sport_name = " . $sport_name;
+						//var_dump($sport);
+						//var_dump($years);
+						//var_dump($sport_name);
+						//echo "json file = $sport_name \n";
+						//array_push($sport_jsons, $sport);
+						//var_dump($sport);
+						//var_dump($sport_name);
+						//var_dump($s_results);
 						if ($sport == $s_results) {
 							$result = $sport_name;
 						}
@@ -198,6 +202,9 @@
 				}
 			}
 		}
+
+
+
 
 
 		$result_file = file_get_contents($result) or die ("That title does not have the year you selected, please try again<br><a href='read_json.php'> Return to Main Page</a>");
@@ -274,15 +281,47 @@
 			$search_array = array();
 
 			foreach ($games as $game_array => $game) {
-				
+				//var_dump($game);
 				foreach ($game as $c_title => $c_value) {
-					
+					//var_dump(($c_title === $s_term));
 					if ($c_title === $s_term) {
 						if (!in_array($c_value, $search_array)) {
-							array_push($search_array, $c_value);
+							array_push($search_array, strtolower($c_value););
 						}
 					}
 				}
+
+				
+				
+				// if ($s_highlight === "min") {
+				// 	$min = NULL;
+				// 	foreach ($game as $g => $value) {
+
+				// 		if ($g === $s_term) {
+				// 			$res = strcmp($value, $min);
+				// 			//var_dump($res);
+				// 			if ($res == -1) {
+				// 			//	var_dump($min);
+				// 			//	var_dump($value);
+				// 				$min = $value;
+				// 			}
+				// 		}
+				// 	}
+				// 	$minmax_val = $min; 
+				// }
+				// elseif ($s_highlight === "max") {
+				// 	$max = NULL;
+				// 	foreach ($game as $g => $value) {
+				// 		if ($g === $s_term) {
+				// 			if (strcmp($value, $max) > 0) {
+				// 			//	var_dump($max);
+				// 			//	var_dump($value);
+				// 				$max = $value;
+				// 			}
+				// 		}
+				// 	}
+				// 	$minmax_val = $max;
+				// }
 				
 			}
 			sort($search_array);
@@ -301,16 +340,16 @@
 					if (($g == $s_term) && ($s_highlight == "all")) {
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g == $s_term) && ($s_highlight == "max") && ($value == $search_array[count($search_array) - 1])){
+					elseif(($g == $s_term) && ($s_highlight == "max") && (strtolower($value) == $search_array[count($search_array) - 1])){
 						echo '<td style="font-size:15px; font-weight:bold; color:blue;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g == $s_term) && ($s_highlight == "max") && ($value != $search_array[count($search_array) - 1])){
+					elseif(($g == $s_term) && ($s_highlight == "max") && (strtolower($value) != $search_array[count($search_array) - 1])){
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g == $s_term) && ($s_highlight == "min") && ($value == $search_array[0])) {
+					elseif(($g == $s_term) && ($s_highlight == "min") && (strtolower($value) == $search_array[0])) {
 						echo '<td style="font-size:15px; font-weight:bold; color:red;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g == $s_term) && ($s_highlight == "min") && ($value != $search_array[0])) {
+					elseif(($g == $s_term) && ($s_highlight == "min") && (strtolower($value) != $search_array[0])) {
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
 					else{
@@ -327,11 +366,15 @@
 		$ratio = 100 * $total_wins/count($games);
 		$total_losses = count($games)-$total_wins;
 		echo "<p style='color: green; font-size: 20px;'>Win percent age is : $ratio </p>" ;
-		echo "<p style='color: green; font-size: 20px;'>Total Wins / Losses : $total_wins / $total_losses </p>";
+		echo "<p style='color: green; font-size: 20px;'>Total Wins/Losses : $total_wins/$total_losses </p>";
 		echo '<br><a href="read_json.php"> Return to Main Page</a>';
 
 		end_html();
 
     }
+
+    //showResults($sport_jsons[0]);
+    //showResults($sport_jsons[1], $global_searchterms[1]);
+
 
 ?>
