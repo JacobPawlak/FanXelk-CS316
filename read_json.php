@@ -285,6 +285,7 @@
 				echo "game_array";
 				var_dump($game);
 				echo "game";
+				echo "\n\n";
 				//if () {
 				//	# code...
 				//}
