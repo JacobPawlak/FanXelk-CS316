@@ -280,12 +280,13 @@
 			foreach ($games as $game_array => $game) {
 				
 				
-				if ($s_highlight == "min") {
+				if ($s_highlight === "min") {
 					$min = NULL;
 					foreach ($game as $g => $value) {
-						if ($g == $s_term) {
-							//$res = strcmp($value, $)
-							if (strcmp($value, $min) < 0) {
+						if ($g === $s_term) {
+							$res = strcmp($value, $min);
+							var_dump($res);
+							if ($res == -1) {
 								var_dump($min);
 								var_dump($value);
 								$min = $value;
@@ -294,10 +295,10 @@
 					}
 					$minmax_val = $min; 
 				}
-				elseif ($s_highlight == "max") {
+				elseif ($s_highlight === "max") {
 					$max = NULL;
 					foreach ($game as $g => $value) {
-						if ($g == $s_term) {
+						if ($g === $s_term) {
 							if (strcmp($value, $max) > 0) {
 								var_dump($max);
 								var_dump($value);
