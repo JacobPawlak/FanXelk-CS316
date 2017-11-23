@@ -285,6 +285,7 @@
 				foreach ($game as $c_title => $c_value) {
 					var_dump(($c_title === $s_term));
 					if ($c_title === $s_term) {
+						var_dump($c_value);
 						if (!in_array($c_value, $search_array)) {
 							array_push($c_value, $search_array);
 						}
