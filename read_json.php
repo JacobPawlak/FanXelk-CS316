@@ -286,10 +286,10 @@
 						if ($g == $s_term) {
 
 							if (strcmp($value, $min) < 0) {
+							}
 								var_dump($min);
 								var_dump($value);
 								$min = $value;
-							}
 						}
 					}
 					$minmax_val = $min; 
