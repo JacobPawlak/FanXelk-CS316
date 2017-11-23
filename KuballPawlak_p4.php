@@ -297,7 +297,7 @@
 					
 					if ($c_title ==== $s_term) {
 						if (!in_array($c_value, $search_array)) {
-							array_push($search_array, $c_value);
+							array_push($search_array, strtolower($c_value));
 						}
 					}
 				}
@@ -316,19 +316,19 @@
 						}
 					}
 
-					if (($g === $s_term) && ($s_highlight === "all")) {
+					if (($g == $s_term) && ($s_highlight == "all")) {
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g === $s_term) && ($s_highlight === "max") && ($value === $search_array[count($search_array) - 1])){
+					elseif(($g == $s_term) && ($s_highlight == "max") && (strtolower($value) == $search_array[count($search_array) - 1])){
 						echo '<td style="font-size:15px; font-weight:bold; color:blue;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g === $s_term) && ($s_highlight === "max") && ($value != $search_array[count($search_array) - 1])){
+					elseif(($g == $s_term) && ($s_highlight == "max") && (strtolower($value) != $search_array[count($search_array) - 1])){
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g === $s_term) && ($s_highlight === "min") && ($value === $search_array[0])) {
+					elseif(($g == $s_term) && ($s_highlight == "min") && (strtolower($value) == $search_array[0])) {
 						echo '<td style="font-size:15px; font-weight:bold; color:red;">' . $value . '</td>' . "\n";
 					}
-					elseif(($g === $s_term) && ($s_highlight === "min") && ($value != $search_array[0])) {
+					elseif(($g == $s_term) && ($s_highlight == "min") && (strtolower($value) != $search_array[0])) {
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
 					else{
