@@ -240,6 +240,8 @@
 
 		echo '<table style="width:100%">';
 			echo '<tr>' . "\n";
+
+				echo '$s_highlight';
 				foreach ($column_titles as $t => $column) {
 
 					//e) if the user selected a search parameter (from searchterms above), then in each 
