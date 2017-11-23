@@ -287,7 +287,7 @@
 
 							if (strcmp($value, $min) < 0) {
 								$min = $value;
-								var_dump($minmax_val);
+								var_dump($min);
 								var_dump($value);
 							}
 						}
@@ -300,7 +300,7 @@
 						if ($g == $s_term) {
 							if (strcmp($value, $min) > 0) {
 								$max = $value;
-								var_dump($minmax_val);
+								var_dump($max);
 								var_dump($value);
 							}
 						}
