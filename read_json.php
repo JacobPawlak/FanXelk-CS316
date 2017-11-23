@@ -286,7 +286,7 @@
 					//var_dump(($c_title === $s_term));
 					if ($c_title === $s_term) {
 						if (!in_array($c_value, $search_array)) {
-							array_push($search_array, strtolower($c_value););
+							array_push($search_array, strtolower($c_value));
 						}
 					}
 				}
