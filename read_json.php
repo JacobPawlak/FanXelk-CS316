@@ -245,7 +245,7 @@
 					//e) if the user selected a search parameter (from searchterms above), then in each 
 					// game that key appears ("Opponent", or "Points", etc) - your report shall make the 
 					// key and value BOLD in the output. If the key does not appears then no key/value is made bold.
-					if ($s_term == $column) {
+					if ($s_term == $column && $s_highlight == "all") {
 						echo '<td style="font-size:20px; font-weight:bold; color:black;">' . $column . '</td>' . "\n";
 					}
 					else{
