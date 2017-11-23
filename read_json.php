@@ -268,7 +268,7 @@
 						}
 					}
 
-					if ($g == $s_term) {
+					if (($g == $s_term) && ($s_highlight == "all") ) {
 						echo '<td style="font-size:15px; font-weight:bold; color:black;">' . $value . '</td>' . "\n";
 					}
 					else{
