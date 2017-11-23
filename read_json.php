@@ -287,6 +287,8 @@
 
 							if ($value < $min) {
 								$min = $value;
+								var_dump($minmax_val);
+								var_dump($value);
 							}
 						}
 					}
@@ -298,6 +300,8 @@
 						if ($g == $s_term) {
 							if ($value >= $max) {
 								$max = $value;
+								var_dump($minmax_val);
+								var_dump($value);
 							}
 						}
 					}
@@ -306,7 +310,6 @@
 				
 			}
 
-			var_dump($minmax_val);
 
 			foreach ($games as $game_array => $game) {
 
