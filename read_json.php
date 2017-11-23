@@ -232,7 +232,7 @@
 		echo '<table style="width:100%">';
 			echo '<tr>' . "\n";
 			foreach ($comments as $com_num => $comment) {
-				echo '<th style="font-size: 22px; color:black;">' . $comment . '</th>' . "\n";
+				echo '<td style="font-size: 22px; color:black;">' . $comment . '</td>' . "\n";
 			}
 			echo '</tr>';
 		echo '</table>';
